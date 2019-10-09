@@ -1,144 +1,212 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
-import { CheckBox, Icon } from 'native-base';
-
+import { Image, Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import Carousel from 'react-native-anchor-carousel';
+import Constants from 'expo-constants';
+import { Container, Header, Card, CardItem, Item, Input, Button, Icon} from 'native-base';
+import ImageCarousel from '../components/ImageCarousel';
+import FlatListItem from '../components/FlatListItem'; 
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons'; // 6.2.2
+import Slideshow from 'react-native-image-slider-show';
+const { width } = Dimensions.get('window'); 
 class ForYouScreen extends Component {
-    constructor(){
-        super();
-        this.state={
-            data:[
-                {name : 'work', checked: false},
-                {name : 'swimm', checked: false},
-                {name : 'study', checked: false},
-                {name : 'sleep', checked: false},
-                {name : 'run', checked: false},
-            ],
-            input: '',
-            task: 'add'
+  constructor(){
+    super();
+    this.state={
+      position: 1,
+      interval: null,
+      data:[
+        {
+          title:'The Secret of',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+        },
+        {
+          title:'Young Mom',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+        },
+        {
+          title:'Terlalu Cantik',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
         }
+      ]
     }
-
-    button(item){
-        Alert.alert(
-            'Delete Item',
-            'Are you sure to delete this item ?',
-            [
-                {text: 'Yes', onPress: ()=> this.deleteList(item)},
-                {text: 'No', onPress: ()=> '', style:'cancel'}
-            ]
-        )
-    }
-    addList = () => {
-        if (this.state.input === ''|| this.state.input === 'undefined'){
-            alert('Please type some text!')
-            return
-        }
-        else{
-            const new_list = [...this.state.data, {name: this.state.input}]
-            alert("Success add '"+this.state.input+"' in List")
-            this.setState({input : '', data:new_list})
-        }
-       
-    };
-    deleteList = (item) => {
-        const new_list = [...this.state.data]
-        new_list.splice(item,1)
-        alert('Success deleted item')
-        this.setState({data:new_list})
-    };
-
-    checkBoxHandler=(index)=>{
-        const new_checked = [...this.state.data]
-        new_checked[index].checked = !new_checked[index].checked
-        // alert(new_checked[index].checked)
-        this.setState({data : new_checked})
-    }
-    updateList =()=>{
-        const new_list = [...this.state.data]
-        new_list[this.state.index].name = this.state.input
-        this.setState({data:new_list, task:'add', input: ''})
-        alert("Success updated item")
-    }
-
-    updateForm = (index)=>{
-        this.setState({task: 'update', index: index, input: this.state.data[index].name})
-    }
-
-    renderItem = ({item, index})=>{
-        return (
-            <View  key={index} style={styles.item}>
-                <CheckBox checked={item.checked} onPress= {() => this.checkBoxHandler(index)}/>
-                <Text>
-                    {item.name}
-                </Text>
-                <Icon name="create" style={{color:'green'}} onPress={()=>this.updateForm(index)}/>
-                <Icon name="trash" style={{padding:5, color:'red'}} onPress={() => this.button(index) } />
+  }
+  componentWillMount() {
+    this.setState({
+      interval: setInterval(() => {
+        this.setState({
+          position: this.state.position === this.state.data.length ? 0 : this.state.position + 1
+        });
+      }, 2000)
+    });
+  }
+ 
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
+  }
+  render() {
+    return (
+      <Container>
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search" />
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+        <ScrollView>
+        <Slideshow 
+            dataSource={this.state.data}
+            position={this.state.position}
+            onPositionChanged={position => this.setState({ position })} />
+          {/* <Card>
+              <CardItem>
+                  <Image source={{uri: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'}} style={{height: 200, width: null, flex: 1}}/>
+              </CardItem>
+          </Card> */}
+          <Text style={{fontSize:18, fontWeight:"bold"}}>Favorites</Text>
+          <View style={styles.container}>
+            <View style={styles.carouselContainer2}>
+              <ImageCarousel/>
             </View>
-            
-        )
-    }
-    render(){
-        return(
-            <View style={styles.container}>
-                <View style={styles.topbar}>
-                    <TextInput style={styles.inputText}
-                        placeholder= {this.state.task === 'add' ? "New Todo" : "Edit Todo"}
-                        value = {this.state.input}
-                        onChangeText = {(text) => {
-                            this.setState({
-                                input: text
-                            })
-                        }}
-                    />
-                    {this.state.task == 'add' ?
-                    <Button style={styles.button} title="Add" onPress={() => this.addList()}/>
-                    :
-                    <Button style={styles.button} title="Update" onPress={() => this.updateList()}/>
-                    }
+          </View>
+          <Text style={{fontSize:18, fontWeight:"bold"}}>All</Text>
+          <FlatList 
+            keyExtractor={data=> data.title}
+            data = {this.state.data} 
+            renderItem={({item, index})=>{
+              // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
+              return(
+                <View>
+                  <FlatListItem item={item} index = {index}>
+
+                  </FlatListItem>
                 </View>
-                <View style={styles.container}>
-                    <FlatList 
-                        data={this.state.data}
-                        keyExtractor = {data => data.name}
-                        renderItem={this.renderItem}
-                        extraData = {this.state}  
-                    />
-                </View>
-            </View>
-            
-        )
-    }
+                
+              )
+            }}
+          >
+
+          </FlatList>
+        </ScrollView>
+      </Container>
+    );
+  }
+}
+class Favourite extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Favourite!</Text>
+      </View>
+    );
+  }
+}
+class Profile extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Profile!</Text>
+      </View>
+    );
+  }
+}
+class IconWithBadge extends React.Component {
+  render() {
+    const { name, badgeCount, color, size } = this.props;
+    return (
+      <View style={{ width: 24, height: 24, margin: 5 }}>
+        <Ionicons name={name} size={size} color={color} />
+        {badgeCount > 0 && (
+          <View
+            style={{
+              // /If you're using react-native < 0.57 overflow outside of the parent
+              // will not work on Android, see https://git.io/fhLJ8
+              position: 'absolute',
+              right: -6,
+              top: -3,
+              backgroundColor: 'red',
+              borderRadius: 6,
+              width: 12,
+              height: 12,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+              {badgeCount}
+            </Text>
+          </View>
+        )}
+      </View>
+    );
+  }
+}
+
+const HomeIconWithBadge = props => {
+  // You should pass down the badgeCount in some other ways like context, redux, mobx or event emitters.
+  return <IconWithBadge {...props} badgeCount={3} />;
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex:1
+const getTabBarIcon = (navigation, focused, tintColor) => {
+  const { routeName } = navigation.state;
+  let IconComponent = Ionicons;
+  let iconName;
+  if (routeName === 'ForYouScreen') {
+    iconName = `ios-keypad${focused ? '' : '-outline'}`;
+    // We want to add badges to home tab icon
+    IconComponent = HomeIconWithBadge;
+  } else if (routeName === 'Favourite') {
+    iconName = `ios-star${focused ? '' : '-outline'}`;
+  }
+   else{
+    iconName = `ios-contact${focused ? '' : '-outline'}`;
+  }
+
+  // You can return any component that you like here!
+  return <IconComponent name={iconName} size={25} color={tintColor} />;
+};
+
+export default createAppContainer(
+  createBottomTabNavigator(
+    {
+      ForyouScreen: { screen: ForYouScreen },
+      Favourite: { screen: Favourite },
+      Profile: { screen: Profile },
     },
-    topbar:{
-        // flex:1,
-        flexDirection:'row',
-        justifyContent: 'space-between',
-        padding:10
-    },
-    item:{
-        flexDirection:'row',
-        justifyContent: 'space-between',
-        padding:10,
-        fontSize:22,
-        height:55,
-        borderBottomWidth:1
-    },
-    inputText:{
-        flex:1,
-        borderWidth:1,
-        borderRadius:10,
-        paddingHorizontal:10
-    },
-    button:{
-        borderRadius:25,
-        fontSize:18,
-        backgroundColor: 'rgb(0, 224, 224)',
-        marginHorizontal:10
+    {
+      defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, tintColor }) =>
+          getTabBarIcon(navigation, focused, tintColor),
+      }),
+      tabBarOptions: {
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      },
     }
+  )
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  }, 
+    carouselContainer: {
+    height: 100,
+    width: width,
+    borderWidth: 5,
+    borderColor: 'white',
+  },
+  carouselContainer2: { 
+    width: width,
+    height:width*0.8, 
+    marginTop:5
+  }, 
 });
-export default ForYouScreen;
