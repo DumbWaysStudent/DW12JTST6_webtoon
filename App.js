@@ -18,12 +18,7 @@
     },
     {
       initialRouteName: 'ForYou',
-      defaultNavigationOptions: {
-        title: 'App',
-        headerRight:(
-          <Icon name="share" style={{padding:10}}></Icon>
-        )
-      }
+      headerMode: 'none'
     }
   );
 

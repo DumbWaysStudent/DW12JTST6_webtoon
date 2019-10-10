@@ -3,7 +3,7 @@ import { Image, Text, View, StyleSheet, Dimensions, FlatList } from 'react-nativ
 import { ScrollView } from 'react-native-gesture-handler';
 import Carousel from 'react-native-anchor-carousel';
 import Constants from 'expo-constants';
-import { Container, Header, Card, CardItem, Item, Input, Button, Icon} from 'native-base';
+import { Container, Header, Item, Input, Button, Icon, Right, Left, Body} from 'native-base';
 import ImageCarousel from '../components/ImageCarousel';
 import FlatListItem from '../components/FlatListItem'; 
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -175,40 +175,49 @@ class Profile extends React.Component {
   constructor(){
     super();
     this.state={
-      data:[
-        {
-          name:'Irvan',
-          url: 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwimvf2rzJDlAhUBXSsKHdkBAUYQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.onlinewebfonts.com%2Ficon%2F295835&psig=AOvVaw0Juk_EG1HH7vFKAe5-sa-2&ust=1570759114026242'
-        }
-      ]
+      name:'Irvan',
+      url: 'https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-512.png'
     }
   }
   render() {
     return (
-      <View style={{flex:1}}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Image 
-            source={{uri: this.state.url}}
-            style={{width:200, height:200}}
-          >
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+          <Body>
+            <Text style={{fontSize:18, color:'white', fontWeight:'bold'}}>Profile</Text>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name='create' />
+            </Button>
+          </Right>
+        </Header>
+        <View style={{flex:1}}>
+          <View style={{ flex: 1, alignItems: 'center', marginVertical:20 }}>
+            <Image 
+              source={{uri: this.state.url}}
+              style={{width:200, height:200}}
+            >
 
-          </Image>
-          <Text>{this.state.name}</Text>
+            </Image>
+            <Text style={{flex:1, fontSize:18, fontWeight:'bold'}}>{this.state.name}</Text>
+          </View>
+          <View style={{flex:1, borderBottomWidth:1, fontSize:16}}>
+            <Button block info style={{marginBottom:5}}><Text>My Webtoon Creation </Text></Button>
+            <Button block warning><Text>Log Out</Text></Button>
+          </View>
         </View>
-        <View>
-          <List>
-            <ListItem>
-              <Text>Nathaniel Clyne</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Dejan Lovren</Text>
-            </ListItem>
-          </List>
-        </View>
-      </View>
+      </Container>
     );
   }
 }
+
+
 class IconWithBadge extends React.Component {
   render() {
     const { name, badgeCount, color, size } = this.props;
