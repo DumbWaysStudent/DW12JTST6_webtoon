@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 3285,
   "expoServerNgrokUrl": "https://wn-6tm.anonymous.clone-webtoon.exp.direct",
   "packagerNgrokUrl": "https://packager.wn-6tm.anonymous.clone-webtoon.exp.direct",
-  "ngrokPid": 6226
+  "ngrokPid": 3316
 }

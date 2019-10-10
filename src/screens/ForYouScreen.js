@@ -97,20 +97,114 @@ class ForYouScreen extends Component {
     );
   }
 }
-class Favourite extends React.Component {
+class Favourite extends Component {
+  constructor(){
+    super();
+    this.state={
+      position: 1,
+      interval: null,
+      data:[
+        {
+          title:'The Secret of',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+          favourite: 100
+        },
+        {
+          title:'Young Mom',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+          favourite: 90
+        },
+        {
+          title:'Terlalu Cantik',
+          url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+          favourite: 80
+        }
+      ]
+    }
+  }
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Favourite!</Text>
-      </View>
+      <Container>
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search" />
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+        <ScrollView>
+        
+          <FlatList 
+            keyExtractor={data=> data.title}
+            data = {this.state.data} 
+            renderItem={({item, index})=>{
+              // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
+              return(
+                <View style={{flex:1}}>
+                  <View style={{flex:1, flexDirection:'row', borderBottomWidth:1}}>
+                      <Image 
+                          source ={{uri : item.url}}
+                          style = {{width:50, height:50, margin:5}}>
+
+                      </Image>
+                      <View style={{flex:1, justifyContent:'center', paddingHorizontal:5}}>
+                          <Text style={{fontWeight:'bold', fontSize:15  }}> {item.title} </Text> 
+                          <Text style={{fontSize:12, color:'grey'}}>
+                            {item.favourite >=100 ? item.favourite.toString()+"+ Favourites" : item.favourite.toString()+" Favourites"}
+                          </Text>
+                      </View>
+                  </View>
+                  <View style={{height:1, backgroundColor:'white'}}>
+                  </View>
+              </View>
+                
+              )
+            }}
+          >
+
+          </FlatList>
+        </ScrollView>
+      </Container>
     );
   }
 }
 class Profile extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      data:[
+        {
+          name:'Irvan',
+          url: 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwimvf2rzJDlAhUBXSsKHdkBAUYQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.onlinewebfonts.com%2Ficon%2F295835&psig=AOvVaw0Juk_EG1HH7vFKAe5-sa-2&ust=1570759114026242'
+        }
+      ]
+    }
+  }
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Profile!</Text>
+      <View style={{flex:1}}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Image 
+            source={{uri: this.state.url}}
+            style={{width:200, height:200}}
+          >
+
+          </Image>
+          <Text>{this.state.name}</Text>
+        </View>
+        <View>
+          <List>
+            <ListItem>
+              <Text>Nathaniel Clyne</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Dejan Lovren</Text>
+            </ListItem>
+          </List>
+        </View>
       </View>
     );
   }
