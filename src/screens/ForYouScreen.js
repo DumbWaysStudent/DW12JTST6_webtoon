@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { Image, Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Carousel from 'react-native-anchor-carousel';
 import Constants from 'expo-constants';
@@ -10,6 +10,7 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons'; // 6.2.2
 import Slideshow from 'react-native-image-slider-show';
 const { width } = Dimensions.get('window'); 
+
 class ForYouScreen extends Component {
   constructor(){
     super();
@@ -63,29 +64,44 @@ class ForYouScreen extends Component {
             dataSource={this.state.data}
             position={this.state.position}
             onPositionChanged={position => this.setState({ position })} />
-          {/* <Card>
-              <CardItem>
-                  <Image source={{uri: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'}} style={{height: 200, width: null, flex: 1}}/>
-              </CardItem>
-          </Card> */}
-          <Text style={{fontSize:18, fontWeight:"bold"}}>Favorites</Text>
+          <Text style={{fontSize:18, fontWeight:"bold", marginTop:10, paddingHorizontal:10}}>Favorites</Text>
           <View style={styles.container}>
             <View style={styles.carouselContainer2}>
               <ImageCarousel/>
             </View>
           </View>
-          <Text style={{fontSize:18, fontWeight:"bold"}}>All</Text>
+          <Text style={{fontSize:18, fontWeight:"bold", margin:10}}>All</Text>
           <FlatList 
             keyExtractor={data=> data.title}
             data = {this.state.data} 
             renderItem={({item, index})=>{
               // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
               return(
-                <View>
-                  <FlatListItem item={item} index = {index}>
+                // <View>
+                //   <FlatListItem item={item} index = {index}>
 
-                  </FlatListItem>
-                </View>
+                //   </FlatListItem>
+                // </View>
+                <View style={{flex:1}}>
+                  <View style={{flex:1, flexDirection:'row', borderBottomWidth:1}}>
+                      <TouchableOpacity onPress={()=>this.props.navigation.navigate('DetailWebtoon')}>
+                          <Image 
+                              source ={{uri :item.url}}
+                              style = {{width:50, height:50, margin:5}}>
+
+                          </Image>
+                      </TouchableOpacity>
+
+                      <View style={{flex:1, justifyContent:'center', margin:2}}>
+                          <Text> {item.title} </Text> 
+                          <Button block info style={{width:100}}>
+                              <Text>Add Favorite</Text>
+                          </Button>
+                      </View>
+                  </View>
+                  <View style={{height:1, backgroundColor:'white'}}>
+                  </View>
+              </View>
                 
               )
             }}
@@ -184,15 +200,15 @@ class Profile extends React.Component {
       <Container>
         <Header>
           <Left>
-            <Button transparent>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name='arrow-back' />
             </Button>
           </Left>
           <Body>
-            <Text style={{fontSize:18, color:'white', fontWeight:'bold'}}>Profile</Text>
+            <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>Profile</Text>
           </Body>
           <Right>
-            <Button transparent>
+            <Button transparent onPress={()=> this.props.navigation.navigate('EditProfile')}>
               <Icon name='create' />
             </Button>
           </Right>
@@ -208,15 +224,14 @@ class Profile extends React.Component {
             <Text style={{flex:1, fontSize:18, fontWeight:'bold'}}>{this.state.name}</Text>
           </View>
           <View style={{flex:1, borderBottomWidth:1, fontSize:16}}>
-            <Button block info style={{marginBottom:5}}><Text>My Webtoon Creation </Text></Button>
-            <Button block warning><Text>Log Out</Text></Button>
+            <Button block info style={{marginBottom:5}} onPress={() => this.props.navigation.navigate('MyWebtoonCreation')}><Text>My Webtoon Creation </Text></Button>
+            <Button block warning onPress={() => this.props.navigation.navigate('Login')}><Text>Log Out</Text></Button>
           </View>
         </View>
       </Container>
     );
   }
 }
-
 
 class IconWithBadge extends React.Component {
   render() {
@@ -265,7 +280,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   } else if (routeName === 'Favourite') {
     iconName = `ios-star${focused ? '' : '-outline'}`;
   }
-   else{
+   else if (routeName === 'Profile'){
     iconName = `ios-contact${focused ? '' : '-outline'}`;
   }
 
@@ -278,7 +293,7 @@ export default createAppContainer(
     {
       ForyouScreen: { screen: ForYouScreen },
       Favourite: { screen: Favourite },
-      Profile: { screen: Profile },
+      Profile: { screen: Profile }
     },
     {
       defaultNavigationOptions: ({ navigation }) => ({

@@ -28,19 +28,23 @@ export default class DetailWebtoonScreen extends Component {
   render() {
     return (
       <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={()=> this.props.navigation.goBack()}>
+            <Icon name="arrow-back"></Icon>
+            </Button>
+          </Left>
+            <Body>
+                <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>Title</Text>
+            </Body>
+          <Right>
+            <Button>
+              <Icon name="share"></Icon>
+            </Button>
+          </Right>
+        </Header>
         <Content>
           <Card>
-            <CardItem>
-              <Left>
-                <Icon name="back"></Icon>
-              </Left>
-                <Body>
-                    <Text>Title</Text>
-                </Body>
-                <Right>
-                    <Icon name="share"></Icon>
-                </Right>
-            </CardItem>
             <CardItem cardBody>
               <Image source={{uri: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'}} style={{height: 200, width: 200, flex: 1}}/>
             </CardItem>

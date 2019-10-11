@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Switch} from 'react-native';
-import { Container, Header, Content, Button , Icon, Row } from 'native-base';
-import { NavigationActions } from 'react-navigation';
-import ForYouScreen from './ForYouScreen';
+import { View, Text, StyleSheet, TextInput, Switch, ScrollView} from 'react-native';
+import { Button, Icon } from 'native-base';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class LoginScreen extends Component {
 
@@ -12,7 +11,7 @@ export default class LoginScreen extends Component {
             email:'',
             validate_email : false,
             password:'',
-            isSecureTextEntry:true,
+            isSecureTextEntry:false,
             fixEmail: 'irvan@gmail.com',
             fixPassword : 'irvan'
         }
@@ -39,7 +38,11 @@ export default class LoginScreen extends Component {
             alert("incorrect username and password")
         }
     }
-
+    showPassword=()=>{
+        this.setState({
+            showPassword: !this.state.isSecureTextEntry
+        })
+    }
     render(){
         return (
             <View style={styles.container}>
@@ -49,6 +52,7 @@ export default class LoginScreen extends Component {
                 </View>
                 <View style={{marginVertical:10}}>
                     <TextInput
+                        autoCapitalize="none"
                         style={styles.inputField} 
                         placeholder="Email"
                         keyboardType="email-address"
@@ -62,25 +66,29 @@ export default class LoginScreen extends Component {
                     
                     <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                         <TextInput 
+                            autoCapitalize="none"
                             style={styles.inputField}
                             placeholder="Password"
                             value={this.state.password}
-                            secureTextEntry={this.state.isSecureTextEntry}
+                            secureTextEntry={!isSecureTextEntry}
                             onChangeText={(text)=>{
                                 this.setState({
                                     password:text
                                 })
                             }}
-                        />
-                        <Switch
+                        >
+                        </TextInput>
+                        <TouchableOpacity onPress={this.showPassword}>
+                            <Icon name={isSecureTextEntry ? 'eye-slash': 'eye'}></Icon>
+                        </TouchableOpacity>
+                        {/* <Switch
                             onValueChange = {(value)=>{
                                 this.setState({isSecureTextEntry:value});
                                 this.setState({password : this.state.password + ' '});
                                 this.setState({password : this.state.password.substring(0, this.state.password.length)});
                             }}
                             value = {this.state.isSecureTextEntry}
-                        />
-                        {/* <Icon name="eye" onLongPress={()=> this.showPassword()}/> */}
+                        /> */}
                     </View>
                     
                     <Button block info style={{borderRadius:5}} onPress={()=> this.checkEmail()}>

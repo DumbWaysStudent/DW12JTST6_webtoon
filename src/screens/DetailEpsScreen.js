@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Text, FlatList, View} from 'react-native';
+import { Image, Text, FlatList, View, Dimensions} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Button, Icon, Left, Body, Right } from 'native-base';
 // import { ScrollView } from 'react-native-gesture-handler';
+const {width, height} = Dimensions.get('window');
 export default class DetailEpsScreen extends Component {
     constructor(){
         super();
@@ -28,39 +29,43 @@ export default class DetailEpsScreen extends Component {
   render() {
     return (
       <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={()=> this.props.navigation.goBack()}>
+            <Icon name="arrow-back"></Icon>
+            </Button>
+          </Left>
+            <Body>
+              <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>Title</Text>
+            </Body>
+          <Right>
+            <Button>
+              <Icon name="share"></Icon>
+            </Button>
+          </Right>
+        </Header>
         <Content>
           <Card>
-            <CardItem>
-              <Left>
-                <Icon name="back"></Icon>
-              </Left>
-                <Body>
-                    <Text>Title</Text>
-                </Body>
-                <Right>
-                    <Icon name="share"></Icon>
-                </Right>
-            </CardItem>
-                <FlatList 
-                    keyExtractor={data=> data.title}
-                    data = {this.state.data} 
-                    renderItem={({item, index})=>{
-                    // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
-                    return(
-                        <View style={{flex:1, margin:3}}>
-                            <View style={{flex:1}}>
-                                <Image 
-                                    source ={{uri : item.url}}
-                                    style = {{width:300, height:400, margin:5}}>
+            <FlatList 
+                keyExtractor={data=> data.title}
+                data = {this.state.data} 
+                renderItem={({item, index})=>{
+                // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
+                return(
+                    <View style={{flex:1, margin:3}}>
+                        <View style={{flex:1}}>
+                            <Image 
+                                source ={{uri : item.url}}
+                                style = {{width:width, height:height}}>
 
-                                </Image>
-                            </View>
-                            <View style={{height:1, backgroundColor:'white'}}>
-                            </View>
+                            </Image>
                         </View>
-                    )
-                    }}>
-                </FlatList>
+                        <View style={{height:1, backgroundColor:'white'}}>
+                        </View>
+                    </View>
+                )
+                }}>
+            </FlatList>
           </Card>
         </Content>
       </Container>
