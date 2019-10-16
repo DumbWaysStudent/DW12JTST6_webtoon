@@ -20,8 +20,15 @@ const { authenticated } = require('./middleware')
 app.group('/api/v1', (router)=>{
 
     router.post('/login', AuthController.login)
+
+    // router.post('/register', RegisterController.login)
+
+
     router.get('/webtoons',WebtoonsController.index)
+
     router.get('/webtoons/:id/episodes',EpisodesController.index)
+
+    router.get('/webtoons/:webtoon_id/episodes/:episode_id',EpisodesController.detail)
 
 }),
 
