@@ -1,0 +1,9 @@
+--- adb starting (pid 6572) ---
+adb I 10-16 09:47:39  6572  6572 main.cpp:57] Android Debug Bridge version 1.0.39
+adb I 10-16 09:47:39  6572  6572 main.cpp:57] Version 1:8.1.0+r23-5~18.04
+adb I 10-16 09:47:39  6572  6572 main.cpp:57] Installed as /usr/lib/android-sdk/platform-tools/adb
+adb I 10-16 09:47:39  6572  6572 main.cpp:57] 
+adb I 10-16 09:47:39  6572  6572 adb_auth_host.cpp:416] adb_auth_init...
+adb I 10-16 09:47:39  6572  6572 adb_auth_host.cpp:174] read_key_file '/home/irvan/.android/adbkey'...
+adb I 10-16 09:47:39  6572  6572 adb_auth_host.cpp:391] adb_auth_inotify_init...
+error: error writing ACK to fd 4: Broken pipe
