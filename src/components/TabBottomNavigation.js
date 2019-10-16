@@ -83,7 +83,6 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
    else{
     iconName = `ios-profile${focused ? '' : '-outline'}`;
   }
-
   // You can return any component that you like here!
   return <IconComponent name={iconName} size={25} color={tintColor} />;
 };

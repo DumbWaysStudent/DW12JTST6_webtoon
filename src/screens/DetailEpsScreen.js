@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Text, FlatList, View, Dimensions} from 'react-native';
-import { Container, Header, Content, Card, CardItem, Button, Icon, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, Card, Button, Icon, Left, Body, Right } from 'native-base';
 // import { ScrollView } from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('window');
 export default class DetailEpsScreen extends Component {

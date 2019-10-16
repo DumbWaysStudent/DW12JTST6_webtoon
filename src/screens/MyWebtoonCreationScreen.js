@@ -55,7 +55,7 @@ export default class MyWebtoonCreationScreen extends Component {
                       </Image>
                       <View style={{flex:1, justifyContent:'center'}}>
                           <Text> {item.title} </Text> 
-                          <Text> {item.date} </Text> 
+                          <Text> {item.episode} Episode(s) </Text> 
                           
                       </View>
                   </View>

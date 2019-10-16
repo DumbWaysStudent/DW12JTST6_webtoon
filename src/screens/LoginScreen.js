@@ -40,7 +40,7 @@ export default class LoginScreen extends Component {
     }
     showPassword=()=>{
         this.setState({
-            showPassword: !this.state.isSecureTextEntry
+            isSecureTextEntry: !this.state.isSecureTextEntry
         })
     }
     render(){
@@ -70,7 +70,7 @@ export default class LoginScreen extends Component {
                             style={styles.inputField}
                             placeholder="Password"
                             value={this.state.password}
-                            secureTextEntry={!isSecureTextEntry}
+                            secureTextEntry={!this.state.isSecureTextEntry}
                             onChangeText={(text)=>{
                                 this.setState({
                                     password:text
@@ -79,7 +79,9 @@ export default class LoginScreen extends Component {
                         >
                         </TextInput>
                         <TouchableOpacity onPress={this.showPassword}>
-                            <Icon name={isSecureTextEntry ? 'eye-slash': 'eye'}></Icon>
+                            <Icon 
+                                style={{marginTop:15, fontSize:33, borderWidth:1, paddingHorizontal:5, borderRadius:5}}
+                                name={this.state.isSecureTextEntry ? 'eyeo': 'eye'}></Icon>
                         </TouchableOpacity>
                         {/* <Switch
                             onValueChange = {(value)=>{
