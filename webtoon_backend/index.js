@@ -25,6 +25,8 @@ app.group('/api/v1', (router)=>{
 
     router.get('/webtoons/favourites/:favourite', authenticated, WebtoonsController.favourite)
 
+    router.get('/webtoons/title/:title',WebtoonsController.title)
+
     router.get('/webtoons/:id/episodes',EpisodesController.index)
 
     router.get('/webtoons/:webtoon_id/episodes/:episode_id',EpisodesController.detail)
