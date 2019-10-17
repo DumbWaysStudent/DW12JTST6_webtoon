@@ -53,19 +53,9 @@ app.group('/api/v1', (router)=>{
     router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodesController.remove)
     // 27
     router.post('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image',authenticated, DetailEpisodeController.store)
-
-
-
-
-    // belum push 
-    
-
-    
-    
-    
-    
+    // 28
+    router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image/:id', authenticated, DetailEpisodeController.remove)  
 
 }),
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`))

@@ -21,3 +21,17 @@ exports.store = (req, res) => {
         })
     })
 }
+
+exports.remove= (req, res) => {
+    EpisodeDetail.destroy({where:{
+        id:req.params.id,
+        episode_id:req.params.episode_id,
+        webtoon_id:req.params.webtoon_id,
+        
+    }}).then(episode_details=>{
+        res.send({
+            message:'Success delete image',
+            episode_details
+        })
+    })
+}
