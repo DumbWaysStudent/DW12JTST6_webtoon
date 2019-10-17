@@ -11,6 +11,7 @@ app.use(bodyParser.json())
 // Controllers
 const WebtoonsController = require('./controllers/webtoons')
 const EpisodesController = require('./controllers/episodes')
+const DetalEpisodeController = require('./controllers/episode_detail')
 const AuthController = require('./controllers/auth')
 
 // Middleware
@@ -28,7 +29,7 @@ app.group('/api/v1', (router)=>{
     // 16
     router.get('/webtoons/:id/episodes',EpisodesController.index)
     // 17
-    router.get('/webtoons/:webtoon_id/episodes/:episode_id',EpisodesController.detail)
+    router.get('/webtoons/:webtoon_id/episodes/:episode_id',DetalEpisodeController.detail)
     // 18
     router.get('/webtoons/favourites/:favourite', authenticated, WebtoonsController.favourite)
     // 19
@@ -41,12 +42,21 @@ app.group('/api/v1', (router)=>{
 
     // 23
     router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.deleteMyWebtoonCreation)
+    //24
+    router.post('/user/webtoon/:webtoon_id/episode',authenticated, EpisodesController.createMyEpisode)
+    router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetalEpisodeController.getDetailEpisode)
     
 
 
 
 
- 
+    // belum push 
+    
+
+    
+    // PUT 22
+    // router.put('/user/:user_id/webtoon/:webtoon_id',authenticated, WebtoonsController.update)
+
     
 
 }),

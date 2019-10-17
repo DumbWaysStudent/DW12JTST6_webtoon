@@ -1,6 +1,5 @@
 const models = require('../models')
 const Episode = models.episodes
-const EpisodeDetail = models.episode_details
 
 exports.index=(req, res)=>{
     Episode.findAll({
@@ -25,13 +24,15 @@ exports.getMyEpisode= (req, res) => {
     })
 }
 
-exports.detail = (req, res) => {
-    EpisodeDetail.findAll({
-        where:{
-            episode_id:req.params.episode_id,
-            webtoon_id:req.params.webtoon_id
-        }
-    }).then(episodes=>{
-        res.send(episodes)
-    })
+exports.createMyEpisode = (req, res) => {
+    Episode.create(
+        req.body
+        ).then(episodes => {
+            res.send({
+                message: 'Success created episode',
+                episodes
+            })
+        })
+    
 }
+

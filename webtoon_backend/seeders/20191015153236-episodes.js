@@ -6,20 +6,17 @@ module.exports = {
       {
         title: "ep.1",
         cover_image:'https://via.placeholder.com/1080',
-        webtoon_id: 1,
-        created_by:1
+        webtoon_id: 1
       },
       {
         title: "ep.2",
         cover_image:'https://via.placeholder.com/1080',
-        webtoon_id: 2,
-        created_by:1
+        webtoon_id: 2
       },
       {
         title: "ep.3",
         cover_image:'https://via.placeholder.com/1080',
-        webtoon_id: 1,
-        created_by:2
+        webtoon_id: 1
       },
 
     ], {})
@@ -27,5 +24,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('episodes', null, {});    
+    
   }
 };
