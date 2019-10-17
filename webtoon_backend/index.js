@@ -22,6 +22,7 @@ app.group('/api/v1', (router)=>{
 
     // 13
     router.post('/login', AuthController.login)
+    router.post('/register', AuthController.register)
 
     // GET 
     // 15

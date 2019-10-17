@@ -24,3 +24,23 @@ exports.login = (req, res) => {
         }
     })
 }
+
+exports.register = (req, res) => {
+    User.create(req.body).then(user => {
+        if(user){
+            const token = jwt.sign({ userId: user.id}, 'my-secret-key')
+            res.send({
+                response:{
+                    username:user.username,
+                    email:user.email,
+                    token: token
+                }
+            })
+        }else{
+            res.send({
+                error: true,
+                message:"something wrong!"
+            })
+        }
+    })
+}
