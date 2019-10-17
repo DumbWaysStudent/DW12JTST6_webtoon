@@ -39,7 +39,9 @@ app.group('/api/v1', (router)=>{
     //21
     router.get('/user/:user_id/webtoon/:webtoon_id/episodes', authenticated, EpisodesController.getMyEpisode)
     router.post('/user/:id/webtoon',authenticated, WebtoonsController.store)
-
+    // PUT 22
+    router.patch('/user/:user_id/webtoon/:webtoon_id',authenticated, WebtoonsController.update)
+    router.patch('/user/:user_id/webtoon/:webtoon_id/episodes',authenticated, EpisodesController.getMyEpisode)
     // 23
     router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.deleteMyWebtoonCreation)
     //24
@@ -54,9 +56,8 @@ app.group('/api/v1', (router)=>{
     
 
     
-    // PUT 22
-    // router.put('/user/:user_id/webtoon/:webtoon_id',authenticated, WebtoonsController.update)
-
+    
+    
     
 
 }),

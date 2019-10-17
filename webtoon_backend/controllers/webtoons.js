@@ -44,21 +44,22 @@ exports.store = (req, res)=>{
     })
 }
 
-// exports.update = (req, res) => {
-//     console.log(req.params)
-//     Webtoon.update(
-//         req.body,
-//         {where:{
-//             created_by:req.params.user_id,
-//             id:req.params.webtoon_id
-//         }
-//     }).then(webtoons=>{
-//         res.send({
-//             message:"Success updated webtoon",
-//             webtoons
-//         })
-//     })
-// }
+exports.update = (req, res) => {
+    // console.log(req.params)
+    Webtoon.update(
+        req.body,
+        {where:{
+            created_by:req.params.user_id,
+            id:req.params.webtoon_id
+        }
+    }).then(webtoons=>{
+        res.send({
+            message:"Success updated webtoon",
+            webtoons
+        })
+    })
+}
+
 exports.deleteMyWebtoonCreation = (req, res)=> {
     Webtoon.destroy({
         where:{
