@@ -45,10 +45,12 @@ app.group('/api/v1', (router)=>{
     // 23
     router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.remove)
     //24
-    router.post('/user/webtoon/:webtoon_id/episode',authenticated, EpisodesController.createMyEpisode)
+    router.post('/user/webtoon/:webtoon_id/episode',authenticated, EpisodesController.store)
     router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetailEpisodeController.getDetailEpisode)
     // 25 
     router.patch('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id',authenticated, EpisodesController.update)
+
+    router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodesController.remove)
 
 
 

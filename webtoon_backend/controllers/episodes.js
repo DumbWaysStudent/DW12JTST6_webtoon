@@ -23,7 +23,7 @@ exports.getMyEpisode= (req, res) => {
     })
 }
 
-exports.createMyEpisode = (req, res) => {
+exports.store = (req, res) => {
     Episode.create(
         req.body
     ).then(episodes => {
@@ -49,3 +49,14 @@ exports.update = (req, res) => {
     })
 }
 
+exports.remove = (req, res) => {
+    Episode.destroy({where:{
+        webtoon_id:req.params.webtoon_id,
+        id:req.params.episode_id
+    }}).then(episode=>{
+        res.send({
+            message:'Success deleted episode',
+            episode
+        })
+    })
+}
