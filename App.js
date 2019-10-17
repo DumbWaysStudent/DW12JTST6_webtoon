@@ -16,6 +16,13 @@
 
   const navigator = createStackNavigator(
     {    
+      // Home: {
+      //   screen: HomeScreen,
+      //   navigationOptions: {
+      //     //headerTitle: 'home'
+      //     header: null
+      //   }
+      // },
       Login:LoginScreen,
       ForYou: ForYouScreen,
       DetailWebtoon:DetailWebtoonScreen,
@@ -28,7 +35,7 @@
       EditProfile:EditProfileScreen
     },
     {
-      initialRouteName: 'Login',
+      initialRouteName: 'ForYou',
       headerMode: 'none'
     }
   );

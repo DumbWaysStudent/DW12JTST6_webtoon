@@ -48,8 +48,8 @@ class ForYouScreen extends Component {
   }
   render() {
     return (
-      <Container>
-        <Header searchBar rounded>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header searchBar rounded style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" />
@@ -64,38 +64,36 @@ class ForYouScreen extends Component {
             dataSource={this.state.data}
             position={this.state.position}
             onPositionChanged={position => this.setState({ position })} />
-          <Text style={{fontSize:18, fontWeight:"bold", marginTop:10, paddingHorizontal:10}}>Favorites</Text>
+          <Text style={{color:'#fff',fontSize:18, fontWeight:"bold", marginTop:10, paddingHorizontal:10}}>Favourites</Text>
+          
           <View style={styles.container}>
             <View style={styles.carouselContainer2}>
               <ImageCarousel/>
             </View>
           </View>
-          <Text style={{fontSize:18, fontWeight:"bold", margin:10}}>All</Text>
+          
+          <Text style={{color:'#fff', fontSize:18, fontWeight:"bold", margin:10}}>
+            All
+          </Text>
           <FlatList 
             keyExtractor={data=> data.title}
             data = {this.state.data} 
             renderItem={({item, index})=>{
-              // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
-              return(
-                // <View>
-                //   <FlatListItem item={item} index = {index}>
-
-                //   </FlatListItem>
-                // </View>
+              return(               
                 <View style={{flex:1}}>
                   <View style={{flex:1, flexDirection:'row', borderBottomWidth:1}}>
                       <TouchableOpacity onPress={()=>this.props.navigation.navigate('DetailWebtoon')}>
                           <Image 
                               source ={{uri :item.url}}
-                              style = {{width:50, height:50, margin:5}}>
+                              style = {{width:60, height:60, margin:5}}>
 
                           </Image>
                       </TouchableOpacity>
-
-                      <View style={{flex:1, justifyContent:'center', margin:2}}>
-                          <Text> {item.title} </Text> 
+                      <View style={{flex:1, justifyContent:'center', margin:5}}>
+                          <Text style={{color:'#fff'}}> {item.title} </Text> 
                           <Button block info style={{width:100}}>
-                              <Text>Add Favorite</Text>
+                              <Icon name="add"></Icon>
+                              <Text style={{color:'#fff'}}>Fav</Text>
                           </Button>
                       </View>
                   </View>
@@ -106,7 +104,6 @@ class ForYouScreen extends Component {
               )
             }}
           >
-
           </FlatList>
         </ScrollView>
       </Container>
@@ -140,8 +137,8 @@ class Favourite extends Component {
   }
   render() {
     return (
-      <Container>
-        <Header searchBar rounded>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header searchBar rounded style={{backgroundColor:'#02a6f7',marginTop:20}}>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" />
@@ -167,8 +164,8 @@ class Favourite extends Component {
 
                       </Image>
                       <View style={{flex:1, justifyContent:'center', paddingHorizontal:5}}>
-                          <Text style={{fontWeight:'bold', fontSize:15  }}> {item.title} </Text> 
-                          <Text style={{fontSize:12, color:'grey'}}>
+                          <Text style={{color:'#fff',fontWeight:'bold', fontSize:15  }}> {item.title} </Text> 
+                          <Text style={{fontSize:12, color:'#f2f2f2'}}>
                             {item.favourite >=100 ? item.favourite.toString()+"+ Favourites" : item.favourite.toString()+" Favourites"}
                           </Text>
                       </View>
@@ -197,8 +194,8 @@ class Profile extends React.Component {
   }
   render() {
     return (
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name='arrow-back' />
@@ -221,7 +218,7 @@ class Profile extends React.Component {
             >
 
             </Image>
-            <Text style={{flex:1, fontSize:18, fontWeight:'bold'}}>{this.state.name}</Text>
+            <Text style={{color:'#fff', flex:1, fontSize:18, fontWeight:'bold'}}>{this.state.name}</Text>
           </View>
           <View style={{flex:1, borderBottomWidth:1, fontSize:16}}>
             <Button block info style={{marginBottom:5}} onPress={() => this.props.navigation.navigate('MyWebtoonCreation')}><Text>My Webtoon Creation </Text></Button>
@@ -237,7 +234,7 @@ class IconWithBadge extends React.Component {
   render() {
     const { name, badgeCount, color, size } = this.props;
     return (
-      <View style={{ width: 24, height: 24, margin: 5 }}>
+      <View style={{backgroundColor:'#455a64', width: 24, height: 24, margin: 5 }}>
         <Ionicons name={name} size={size} color={color} />
         {badgeCount > 0 && (
           <View
@@ -273,15 +270,15 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   const { routeName } = navigation.state;
   let IconComponent = Ionicons;
   let iconName;
-  if (routeName === 'ForYouScreen') {
-    iconName = `ios-keypad${focused ? '' : '-outline'}`;
+  if (routeName === 'ForYou') {
+    iconName = `ios-square${focused ? '' : '-outline'}`;
     // We want to add badges to home tab icon
-    IconComponent = HomeIconWithBadge;
+    // IconComponent = HomeIconWithBadge;
   } else if (routeName === 'Favourite') {
-    iconName = `ios-star${focused ? '' : '-outline'}`;
+    iconName = `md-star${focused ? '' : '-outline'}`;
   }
    else if (routeName === 'Profile'){
-    iconName = `ios-contact${focused ? '' : '-outline'}`;
+    iconName = `md-person${focused ? '' : '-outline'}`;
   }
 
   // You can return any component that you like here!
@@ -291,7 +288,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 export default createAppContainer(
   createBottomTabNavigator(
     {
-      ForyouScreen: { screen: ForYouScreen },
+      ForYou: { screen: ForYouScreen },
       Favourite: { screen: Favourite },
       Profile: { screen: Profile }
     },
@@ -301,8 +298,8 @@ export default createAppContainer(
           getTabBarIcon(navigation, focused, tintColor),
       }),
       tabBarOptions: {
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#02a6f7',
+        inactiveTintColor: '#455a64',
       },
     }
   )
@@ -324,7 +321,7 @@ const styles = StyleSheet.create({
   },
   carouselContainer2: { 
     width: width,
-    height:width*0.8, 
+    height:width*0.4, 
     marginTop:5
   }, 
 });

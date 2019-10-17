@@ -22,8 +22,8 @@ export default class EditEpisodeScreen extends Component {
   }
   render() {
     return (  
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={()=> this.props.navigation.goBack()}>
               <Icon name='arrow-back' />

@@ -39,14 +39,14 @@ export default class ImageCarousel extends Component {
           source={{ uri: uri }}
           style={styles.imageBackground}
         >
-          <View style={styles.rightTextContainer}>
+          {/* <View style={styles.rightTextContainer}>
             <Text style={styles.rightText}>Lorem</Text>
-          </View>
+          </View> */}
         </ImageBackground>
-        <View style={styles.lowerContainer}>
+        {/* <View style={styles.lowerContainer}>
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.contentText}>{content}</Text>
-        </View>
+        </View> */}
       </TouchableOpacity>
     );
   };
@@ -57,7 +57,7 @@ export default class ImageCarousel extends Component {
         style={styles.carousel}
         data={data}
         renderItem={this.renderItem}
-        itemWidth={0.7 * width}
+        itemWidth={0.5 * width}
         inActiveOpacity={0.3}
         containerWidth={width - 15}
         ref={(c) => {
@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
   },
   item: {
     borderWidth: 2,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     flex: 1,
     borderRadius: 5,
     borderColor: 'white',
-    // elevation: 2
+    elevation: 3
   },
   imageBackground: {
     flex: 2,

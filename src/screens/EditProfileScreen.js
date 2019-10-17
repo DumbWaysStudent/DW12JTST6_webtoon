@@ -12,8 +12,8 @@ export default class EditProfile extends Component {
     }
     render() {
       return (
-        <Container>
-          <Header>
+        <Container style={{backgroundColor:'#455a64'}}>
+          <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
             <Left>
               <Button transparent onPress={() => this.props.navigation.goBack()}>
                 <Icon name='arrow-back' />
@@ -37,7 +37,7 @@ export default class EditProfile extends Component {
   
               </Image>
               <TextInput 
-                style={{ fontSize:18, fontWeight:'bold', borderWidth:1, height:44, width:200, paddingHorizontal:10, borderRadius:5, margin:20}}
+                style={{ fontSize:18, fontWeight:'bold', borderWidth:1, height:44, width:250, paddingHorizontal:10, borderRadius:5, marginTop:20, color:'#fff' }}
                 value={this.state.name}
               >
               </TextInput>

@@ -22,8 +22,8 @@ export default class CreateEpisodeScreen extends Component {
   }
   render() {
     return (  
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={()=> this.props.navigation.goBack()}>
               <Icon name='arrow-back' />
@@ -33,44 +33,42 @@ export default class CreateEpisodeScreen extends Component {
             <Text style={{fontSize:18, color:'white', fontWeight:'bold'}}>Create Episode</Text>
           </Body>
           <Right>
-              <Icon name="done"></Icon>
+            <Button transparent>
+              <Icon name="md-checkmark"></Icon>
+            </Button>
           </Right>
         </Header>
         <View>
             <TextInput 
                 placeholder='Name'
-                style={{height:50, borderWidth:1, paddingHorizontal:10, margin:10, borderRadius:5}}
+                style={{height:50, borderWidth:1, paddingHorizontal:10, margin:10, borderRadius:5, color:"white", borderColor:"white"}}
             >
 
             </TextInput>
-            <Text style={{marginVertical:10, fontSize:22, paddingHorizontal:10}}>Add Images</Text>
+            <Text style={{marginVertical:10, fontSize:22, paddingHorizontal:10, color:'white'}}>Add Images</Text>
         </View>
         <FlatList 
           keyExtractor={data=> data.title}
           data = {this.state.data} 
           renderItem={({item, index})=>{
-          // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
-          return(
+            return(
               <View style={{flex:1, margin:3}}>
                   <View style={{flex:1, flexDirection:'row', borderBottomWidth:1}}>
                       <Image 
                           source ={{uri : item.url}}
                           style = {{width:60, height:60, margin:5}}>
-
                       </Image>
-                      <Content>
-                          <Text> {item.title} </Text> 
-                          <Button danger style={{width:90}}>
-                              <Icon name="trash"></Icon>
-                              <Text style={{fontWeight:'bold', color:'white', paddingRight:15}}>Delete</Text>
+                      <View style={{flex:1}}>
+                        <Text> {item.title} </Text>
+                        <Button rounded danger style={{width:50,height:50}}>
+                          <Icon name="trash"></Icon>
                         </Button>
-                          
-                    </Content>
+                      </View> 
                   </View>
                   <View style={{height:1, backgroundColor:'white'}}>
                   </View>
               </View>
-          )
+            )
           }}>
 
         </FlatList>

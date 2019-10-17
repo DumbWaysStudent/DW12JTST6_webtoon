@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 3061,
+  "expoServerNgrokUrl": "https://ya-nbn.anonymous.clone-webtoon.exp.direct",
+  "packagerNgrokUrl": "https://packager.ya-nbn.anonymous.clone-webtoon.exp.direct",
+  "ngrokPid": 3098,
   "webpackServerPort": null
 }

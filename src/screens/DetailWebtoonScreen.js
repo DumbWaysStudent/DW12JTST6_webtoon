@@ -27,8 +27,8 @@ export default class DetailWebtoonScreen extends Component {
       }
   render() {
     return (
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={()=> this.props.navigation.goBack()}>
             <Icon name="arrow-back"></Icon>
@@ -38,7 +38,7 @@ export default class DetailWebtoonScreen extends Component {
                 <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>Title</Text>
             </Body>
           <Right>
-            <Button>
+            <Button transparent>
               <Icon name="share"></Icon>
             </Button>
           </Right>
@@ -64,8 +64,8 @@ export default class DetailWebtoonScreen extends Component {
 
                             </Image>
                             <View style={{flex:1, justifyContent:'center'}}>
-                                <Text> {item.title} </Text> 
-                                <Text> {item.date} </Text> 
+                                <Text style={{color:'white'}}> {item.title} </Text> 
+                                <Text style={{color:'white'}}> {item.date} </Text> 
                                 
                             </View>
                         </View>
@@ -75,7 +75,6 @@ export default class DetailWebtoonScreen extends Component {
                   </TouchableOpacity>
                 )
                 }}>
-
             </FlatList>
         </Content>
       </Container>

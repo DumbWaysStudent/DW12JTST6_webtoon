@@ -29,8 +29,8 @@ export default class MyWebtoonCreationScreen extends Component {
   }
   render() {
     return (  
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={()=> this.props.navigation.goBack()}>
               <Icon name='arrow-back' />
@@ -54,8 +54,8 @@ export default class MyWebtoonCreationScreen extends Component {
 
                       </Image>
                       <View style={{flex:1, justifyContent:'center'}}>
-                          <Text> {item.title} </Text> 
-                          <Text> {item.episode} Episode(s) </Text> 
+                          <Text style={{color:'#fff'}}> {item.title} </Text> 
+                          <Text style={{color:'#f2f2f2'}}> {item.episode} Episode(s) </Text> 
                           
                       </View>
                   </View>
@@ -68,10 +68,10 @@ export default class MyWebtoonCreationScreen extends Component {
         </FlatList>
         <View style={{ flex: 1 }}>
           <Fab
+            style={{backgroundColor:'#02a6f7'}}
             active={this.state.active}
             direction="up"
             containerStyle={{ }}
-            style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
             onPress={() => this.props.navigation.navigate('CreateWebtoon')}>
             <Icon name="add" />

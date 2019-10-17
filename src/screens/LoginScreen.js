@@ -1,22 +1,65 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Switch, ScrollView} from 'react-native';
-import { Button, Icon } from 'native-base';
+import { View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
+import { Button, Icon, Spinner } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Logo from '../components/Logo';
 
 export default class LoginScreen extends Component {
-
     constructor(){
-        super()
-        this.state={
+        super();
+        this.state ={
             email:'',
             validate_email : false,
             password:'',
             isSecureTextEntry:false,
             fixEmail: 'irvan@gmail.com',
-            fixPassword : 'irvan'
+            fixPassword : 'irvan',
+            loading:false
         }
     }
-    checkEmail =() =>{
+    
+    // handleChange = event =>{
+    //     this.setState({
+    //         email:event.target.value,
+    //         password:event.target.value
+    //     })
+    // }
+    // handleSubmit = (email, password) => {
+    //     axios.post('http://192.168.0.62:5000/api/v1/login', {email,password})
+    //     .then(res => {
+    //         const newEmail = this.state.email;
+    //         const newPassword = this.state.password;
+    //         this.setState({
+    //             email:newEmail,
+    //             password:newPassword
+    //         })
+            
+    //     })
+    //     .catch((error)=>{
+    //         throw error
+    //     });
+    //     alert(this.state.email);
+    // }
+
+    // makeRemoteRequest = ()=>{
+    //     this.setState({loading:true})
+    //     setTimeout(()=>{
+    //         axios.get('http://192.168.0.62:5000/api/v1/webtoons').then(res=>{
+    //             const newData = this.state.data.concat(res.data);
+    //             this.setState({
+    //                 loading:false,
+    //                 data:newData
+    //             })
+    //         }).catch(err=>{
+    //             throw err;
+    //         });
+    //     }, 1500)
+    // }
+    // componentDidMount(){
+    //     this.makeRemoteRequest()
+    // }
+
+    checkEmail = () =>{
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
         if(reg.test(this.state.email) === false) {
             alert("Email is Not Correct");
@@ -44,17 +87,17 @@ export default class LoginScreen extends Component {
         })
     }
     render(){
-        return (
+        return (   
             <View style={styles.container}>
-                <View style={{alignItems:'center'}}>
-                    <Text style={{fontSize:30}}>Login</Text>
-                    <Text style={{fontSize:18}}>Login with your account WEBTOON</Text>
-                </View>
-                <View style={{marginVertical:10}}>
+                <Logo/>
+                <View style={styles.form}>
                     <TextInput
+                        style={styles.inputBox}
+                        underlineColorAndroid='rgba(0,0,0,0)'
                         autoCapitalize="none"
-                        style={styles.inputField} 
                         placeholder="Email"
+                        placeholderTextColor="#ffffff"
+                        selectionColor="#fff"
                         keyboardType="email-address"
                         value={this.state.email}
                         onChangeText = {(text)=>{
@@ -63,58 +106,69 @@ export default class LoginScreen extends Component {
                             })
                         }}
                     />
+                    <TextInput 
+                        autoCapitalize="none"
+                        style={styles.inputBox}
+                        underlineColorAndroid="rgba(0,0,0,0)"
+                        placeholder="Password"
+                        value={this.state.password}
+                        secureTextEntry={!this.state.isSecureTextEntry}
+                        onChangeText={(text)=>{
+                            this.setState({
+                                password:text
+                            })
+                        }}
+                    >
+                    </TextInput>
+                    {/* <TouchableOpacity onPress={this.showPassword}>
+                        <Icon 
+                            style={{marginTop:15, fontSize:33, paddingHorizontal:5, borderRadius:5}}
+                            name={this.state.isSecureTextEntry ? 'eye': 'eye'}></Icon>
+                    </TouchableOpacity> */}
                     
-                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                        <TextInput 
-                            autoCapitalize="none"
-                            style={styles.inputField}
-                            placeholder="Password"
-                            value={this.state.password}
-                            secureTextEntry={!this.state.isSecureTextEntry}
-                            onChangeText={(text)=>{
-                                this.setState({
-                                    password:text
-                                })
-                            }}
-                        >
-                        </TextInput>
-                        <TouchableOpacity onPress={this.showPassword}>
-                            <Icon 
-                                style={{marginTop:15, fontSize:33, borderWidth:1, paddingHorizontal:5, borderRadius:5}}
-                                name={this.state.isSecureTextEntry ? 'eyeo': 'eye'}></Icon>
-                        </TouchableOpacity>
-                        {/* <Switch
-                            onValueChange = {(value)=>{
-                                this.setState({isSecureTextEntry:value});
-                                this.setState({password : this.state.password + ' '});
-                                this.setState({password : this.state.password.substring(0, this.state.password.length)});
-                            }}
-                            value = {this.state.isSecureTextEntry}
-                        /> */}
-                    </View>
-                    
-                    <Button block info style={{borderRadius:5}} onPress={()=> this.checkEmail()}>
+                    <Button block info style={styles.button} onPress={()=> this.checkEmail()}>
                         <Text style={{justifyContent:'center', color:'white'}}>Login</Text>
                     </Button>
-                </View>
 
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'center',
+    container : {        
+        backgroundColor:'#455a64',
+        flex: 1,
+        alignItems:'center',
+        justifyContent :'center'
+    },
+    form : {
+        flexGrow: 1,
+        // justifyContent:'center',
         alignItems: 'center'
     },
-    inputField:{
-        width:200,
-        borderWidth:1,
-        height:44,
-        borderRadius:5,
-        paddingHorizontal:10,
-        margin:14
+    inputBox: {
+        width:300,
+        height:45,
+        backgroundColor:'rgba(255, 255,255,0.2)',
+        borderRadius: 25,
+        paddingHorizontal:16,
+        fontSize:16,
+        color:'#ffffff',
+        marginVertical: 10
+    },
+    button: {
+        width:300,
+        backgroundColor:'#1c313a',
+        borderRadius: 25,
+        marginVertical: 10,
+        paddingVertical: 13
+    },
+    buttonText: {
+        fontSize:16,
+        fontWeight:'500',
+        color:'#ffffff',
+        textAlign:'center'
     }
 })

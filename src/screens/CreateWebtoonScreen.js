@@ -4,8 +4,8 @@ import { Container, Header, View, Button, Icon, Left, Body, Right } from 'native
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 
 export default class CreateWebtoonScreen extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       active: false,
       data:[
@@ -29,8 +29,8 @@ export default class CreateWebtoonScreen extends Component {
   }
   render() {
     return (  
-      <Container>
-        <Header>
+      <Container style={{backgroundColor:'#455a64'}}>
+        <Header style={{marginTop:20, backgroundColor:'#02a6f7'}}>
           <Left>
             <Button transparent onPress={()=> this.props.navigation.goBack()}>
               <Icon name='arrow-back' />
@@ -40,24 +40,25 @@ export default class CreateWebtoonScreen extends Component {
             <Text style={{fontSize:18, color:'white', fontWeight:'bold'}}>Create Webtoon</Text>
           </Body>
           <Right>
-              <Icon name="done"></Icon>
+            <Button transparent>
+              <Icon name="md-checkmark"></Icon>
+            </Button>
           </Right>
         </Header>
         <View>
             <TextInput 
                 placeholder='Title'
-                style={{height:50, borderWidth:1, paddingHorizontal:10, margin:10, borderRadius:5}}
+                style={{fontSize:20, height:50, borderWidth:1, paddingHorizontal:10, margin:10, borderRadius:5, color:"white", borderColor:"white"}}
             >
 
             </TextInput>
-            <Text style={{marginVertical:10, fontSize:22, paddingHorizontal:10}}>Episode</Text>
+            <Text style={{marginVertical:10, fontSize:22, paddingHorizontal:10, color:'white'}}>Episode</Text>
         </View>
         <FlatList 
-          keyExtractor={data=> data.episode}
+          keyExtractor={webtoon=> webtoon.episode}
           data = {this.state.data} 
-          renderItem={({item, index})=>{
-          // console.log(`item = ${JSON.stringify(item)}, index = ${index}`);
-          return(
+          renderItem={({item})=>{
+            return(
               <View style={{flex:1, margin:3}}>
                   <View style={{flex:1, flexDirection:'row', borderBottomWidth:1}}>
                       <Image 
@@ -66,8 +67,8 @@ export default class CreateWebtoonScreen extends Component {
 
                       </Image>
                       <View style={{flex:1, justifyContent:'center'}}>
-                          <Text> Ep. {item.episode} </Text> 
-                          <Text> {item.date} </Text> 
+                          <Text style={{color:'white'}}> Ep. {item.episode} </Text> 
+                          <Text style={{color:'white'}}> {item.date} </Text> 
                           
                       </View>
                   </View>
