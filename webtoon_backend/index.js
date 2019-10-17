@@ -29,7 +29,7 @@ app.group('/api/v1', (router)=>{
     // 16
     router.get('/webtoons/:id/episodes',EpisodesController.index)
     // 17
-    router.get('/webtoons/:webtoon_id/episodes/:episode_id',DetailEpisodeController.detail)
+    router.get('/webtoons/:webtoon_id/episodes/:episode_id',DetailEpisodeController.read)
     // 18
     router.get('/webtoons/favourites/:favourite', authenticated, WebtoonsController.favourite)
     // 19
@@ -46,11 +46,14 @@ app.group('/api/v1', (router)=>{
     router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.remove)
     //24
     router.post('/user/webtoon/:webtoon_id/episode',authenticated, EpisodesController.store)
-    router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetailEpisodeController.getDetailEpisode)
+    router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetailEpisodeController.read)
     // 25 
     router.patch('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id',authenticated, EpisodesController.update)
-
+    // 26
     router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodesController.remove)
+    // 27
+    router.post('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image',authenticated, DetailEpisodeController.store)
+
 
 
 
