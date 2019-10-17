@@ -36,8 +36,16 @@ app.group('/api/v1', (router)=>{
     // 20
     router.get('/user/:user_id/webtoons', authenticated, WebtoonsController.myWebtoonCreation)
 
+    router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.deleteMyWebtoonCreation)
 
 
+
+    // belum push 
+    router.get('/user/user_id/webtoon/:webtoon_id/episodes/',EpisodesController.index)
+    // POST 
+    router.post('/user/:id/webtoon',authenticated, WebtoonsController.store)
+    // PUT 22
+    router.put('/user/:user_id/webtoon/:webtoon_id',authenticated, WebtoonsController.update)
 
     
 

@@ -63,6 +63,19 @@ exports.update = (req, res) => {
         })
     })
 }
+exports.deleteMyWebtoonCreation = (req, res)=> {
+    Webtoon.destroy({
+        where:{
+            created_by:req.params.user_id,
+            id:req.params.webtoon_id
+        }
+    }).then(webtoons=>{
+        res.send({
+            message: 'Success deleted webtoon',
+            webtoons
+        })
+    })
+}
 
 exports.myWebtoonCreation= (req, res)=>{
     Webtoon.findAll({
