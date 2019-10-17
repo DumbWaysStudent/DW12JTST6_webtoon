@@ -12,6 +12,19 @@ exports.index=(req, res)=>{
     })
 }
 
+exports.getMyEpisode= (req, res) => {
+    Episode.findAll({
+        where:{
+            created_by:req.params.user_id,
+            webtoon_id:req.params.webtoon_id
+        }
+    }).then(episodes=>{
+        res.send({
+            episodes
+        })
+    })
+}
+
 exports.detail = (req, res) => {
     EpisodeDetail.findAll({
         where:{
