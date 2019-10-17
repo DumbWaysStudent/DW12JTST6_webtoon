@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 // Controllers
 const WebtoonsController = require('./controllers/webtoons')
 const EpisodesController = require('./controllers/episodes')
-const DetalEpisodeController = require('./controllers/episode_detail')
+const DetailEpisodeController = require('./controllers/episode_detail')
 const AuthController = require('./controllers/auth')
 
 // Middleware
@@ -29,7 +29,7 @@ app.group('/api/v1', (router)=>{
     // 16
     router.get('/webtoons/:id/episodes',EpisodesController.index)
     // 17
-    router.get('/webtoons/:webtoon_id/episodes/:episode_id',DetalEpisodeController.detail)
+    router.get('/webtoons/:webtoon_id/episodes/:episode_id',DetailEpisodeController.detail)
     // 18
     router.get('/webtoons/favourites/:favourite', authenticated, WebtoonsController.favourite)
     // 19
@@ -41,14 +41,14 @@ app.group('/api/v1', (router)=>{
     router.post('/user/:id/webtoon',authenticated, WebtoonsController.store)
     // PUT 22
     router.patch('/user/:user_id/webtoon/:webtoon_id',authenticated, WebtoonsController.update)
-    router.patch('/user/:user_id/webtoon/:webtoon_id/episodes',authenticated, EpisodesController.getMyEpisode)
+    router.get('/user/:user_id/webtoon/:webtoon_id/episodes',authenticated, EpisodesController.getMyEpisode)
     // 23
-    router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.deleteMyWebtoonCreation)
+    router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonsController.remove)
     //24
     router.post('/user/webtoon/:webtoon_id/episode',authenticated, EpisodesController.createMyEpisode)
-    router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetalEpisodeController.getDetailEpisode)
-    
-
+    router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images',authenticated, DetailEpisodeController.getDetailEpisode)
+    // 25 
+    router.patch('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id',authenticated, EpisodesController.update)
 
 
 

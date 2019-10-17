@@ -60,7 +60,7 @@ exports.update = (req, res) => {
     })
 }
 
-exports.deleteMyWebtoonCreation = (req, res)=> {
+exports.remove = (req, res)=> {
     Webtoon.destroy({
         where:{
             created_by:req.params.user_id,
