@@ -14,16 +14,16 @@ Webtoon, or often also called webcomics, is a comic that is distributed through 
 * React native (FrontEnd) with lib (*Native base*, *Anchor Carousel*, *Slider show*)
 
 **Screenshoot App**
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-23-317_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-45-649_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-52-504_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-57-300_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-45-12-411_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-45-20-833_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-27-795_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-34-690_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-40-662_host.exp.exponent.png)
-(https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-50-02-533_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-23-317_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-45-649_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-52-504_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-57-300_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-45-12-411_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-45-20-833_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-27-795_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-34-690_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-48-40-662_host.exp.exponent.png)
+![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-50-02-533_host.exp.exponent.png)
 
 
 **Contact**
