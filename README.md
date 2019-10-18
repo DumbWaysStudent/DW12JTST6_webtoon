@@ -15,8 +15,7 @@ Webtoon, or often also called webcomics, is a comic that is distributed through 
 
 **Screenshoot App**
 
-<img src="https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-23-317_host.exp.exponent.png" width="200"/>
-<img src="https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-45-649_host.exp.exponent.png" width="300"/>
+<img src="https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-23-317_host.exp.exponent.png" width="200"/><img src="https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-45-649_host.exp.exponent.png" width="200"/>
 ![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-52-504_host.exp.exponent.png | width=200)
 ![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-44-57-300_host.exp.exponent.png)
 ![Screenshot View Data](https://github.com/DumbWaysStudent/DW12JTST6_webtoon/blob/1.login_screen/assets/Screenshot_2019-10-18-12-45-12-411_host.exp.exponent.png)
