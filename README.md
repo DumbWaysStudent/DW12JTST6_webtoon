@@ -9,7 +9,7 @@ to be more secure. Programming languages for back-end development include php, r
 
 
 **Feature**
-* login with resfull API
+* Resfull API
 * Create webtoon, episode, user
 * Update webtoon, episode
 * Delete webtoon, episode
